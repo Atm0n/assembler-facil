@@ -1,0 +1,48 @@
+JMP inici
+lletra:
+DB "0"
+DB 0
+consonant:
+DB "consonant"
+DB 0
+vocal:
+DB "vocal"
+DB 0
+inici:
+MOV D, 232
+MOV [150], 65
+MOV [151], 97
+MOV [152], 69
+MOV [153], 101
+MOV [154], 73
+MOV [155], 105
+MOV [156], 79
+MOV [157], 111
+MOV [158], 85
+MOV [159], 117
+;aqui canviem la vocal posant el seu codi ascii corresponent
+MOV A, [lletra]
+MOV B, 149
+loop:
+CMP B, 159
+JE escriureCons
+INC B
+CMP A, [B]
+JNE loop
+
+escriureVoc:
+MOV C, vocal
+JMP loopEscriure
+
+escriureCons:
+MOV C, consonant
+JMP loopEscriure
+
+loopEscriure:
+MOV A, [C]
+MOV [D], A
+INC C
+INC D
+CMP A, 0
+JNZ loopEscriure
+HLT
