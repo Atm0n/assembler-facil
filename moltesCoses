@@ -1,0 +1,186 @@
+MOU TOT A 128
+=======================================================
+JMP inici
+dades: DB "hola"
+inici:
+MOV D, dades
+
+
+MOV D, 0
+MOV [A], 0
+MOV B, 128
+loop:
+MOV C, [A]
+MOV [B], C
+INC A
+INC B
+INC D
+CMP D, 8
+JNZ loop
+=======================================================
+MOV B, 232
+JMP start
+x: DB "abcasdasd"
+MOV C, x
+start: MOV A, [x]
+loop:
+	MOV [B], A
+	MOV A, [C]
+	INC C
+	JMP loop
+=======================================================
+JMP start
+start: 
+	MOV A, 48
+loop:
+	MOV [232], A
+	ADD A, 1
+	CMP A, 58
+	JNZ loop
+====================DIES SETMANA=======================
+
+MOV A, 1
+CMP A, 7
+JA error
+CMP A, 1
+JE dilluns
+CMP A, 2
+JE dimarts
+CMP A, 3
+JE dimecres
+CMP A, 4
+JE dijous
+CMP A, 5
+JE divendres
+CMP A, 6
+JE dissabte
+CMP A, 7
+JE diumenge
+HLT
+dilluns:
+MOV [232], 100
+MOV [233], 108
+HLT
+
+dimarts:
+MOV [232], 100
+MOV [233], 109
+HLT
+
+dimecres:
+MOV [232], 100
+MOV [233], 99
+HLT
+
+dijous:
+MOV [232], 100
+MOV [233], 106
+HLT
+divendres:
+MOV [232], 100
+MOV [233], 118
+HLT
+dissabte:
+MOV [232], 100
+MOV [233], 115
+HLT
+
+diumenge:
+MOV [232], 100
+MOV [233], 103
+HLT
+
+error:
+	HLT
+========================PRACTIQUES====================================
+MOV A, 9
+MOV B, 6
+MOV C, 9
+
+CMP A, 5
+JB error
+CMP B, 5
+JB error
+CMP C, 5
+JB error
+
+ADD A, B
+ADD A, C
+DIV 3
+CMP A, 8
+JAE ok
+
+error:
+MOV [232], 78
+MOV [233], 79
+
+HLT
+
+ok:
+MOV [232], 79
+MOV [233], 75
+HLT
+
+=================================DIVIDIR RESTANT MOLTES VEGADES=========================================
+
+MOV A, 5
+MOV B, 16
+inici:
+SUB B, A
+ADD C, 1
+MOV [232], C
+CMP B, A
+JNB inici
+==================================VOCAL CONSONANT=======================================================================
+JMP inici
+lletra:
+DB "o"
+DB 0
+consonant:
+DB "consonant"
+DB 0
+vocal:
+DB "vocal"
+DB 0
+inici:
+MOV D, 232
+MOV [150], 65
+MOV [151], 97
+MOV [152], 69
+MOV [153], 101
+MOV [154], 73
+MOV [155], 105
+MOV [156], 79
+MOV [157], 111
+MOV [158], 85
+MOV [159], 117
+;aqui canviem la vocal posant el seu codi ascii corresponent
+MOV A, [lletra]
+MOV B, 149
+loop:
+CMP B, 159
+JE escriureCons
+INC B
+CMP A, [B]
+JNE loop
+
+escriureVoc:
+MOV C, vocal
+JMP loopEscriure
+
+escriureCons:
+MOV C, consonant
+JMP loopEscriure
+
+loopEscriure:
+MOV A, [C]
+MOV [D], A
+INC C
+INC D
+CMP A, 0
+JNZ loopEscriure
+HLT
+
+
+
+===============================================================================================
